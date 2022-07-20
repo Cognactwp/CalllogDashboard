@@ -103,14 +103,14 @@ Date.prototype.getWeek = function() {
 
 export const getDateRangeOfWeek = (weekNo) => {
     var d1 = new Date();
-    var numOfdaysPastSinceLastMonday = eval(d1.getDay()- 1);
+    var numOfdaysPastSinceLastMonday = (d1.getDay()- 1);
     d1.setDate(d1.getDate() - numOfdaysPastSinceLastMonday);
     var weekNoToday = d1.getWeek();
-    var weeksInTheFuture = eval( weekNo - weekNoToday );
-    d1.setDate(d1.getDate() + eval( 7 * weeksInTheFuture ));
-    var rangeIsFrom = eval(d1.getMonth()+1) +"/" + d1.getDate();
+    var weeksInTheFuture = ( weekNo - weekNoToday );
+    d1.setDate(d1.getDate() + ( 7 * weeksInTheFuture ));
+    var rangeIsFrom = (d1.getMonth()+1) +"/" + d1.getDate();
     d1.setDate(d1.getDate() + 4);
-    var rangeIsTo = eval(d1.getMonth()+1) +"/" + d1.getDate();
+    var rangeIsTo = (d1.getMonth()+1) +"/" + d1.getDate();
     return rangeIsFrom + " - " +rangeIsTo;
 
 }
