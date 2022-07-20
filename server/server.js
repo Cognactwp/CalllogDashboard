@@ -46,7 +46,7 @@ app.get("/cases", async (req, res) =>{
     if (project == 0) query += " AND PHASE IN (1,2,4)";
     else query += " AND PHASE = " + project;
     query +=  " GROUP BY c.problem_group "
-    + " ORDER BY COUNT(j.call_category_id) DESC "
+     +" ORDER BY COUNT(j.call_category_id) DESC ";
 
     try {
         connection.query(query, (err,results, fields)=>{
@@ -58,7 +58,7 @@ app.get("/cases", async (req, res) =>{
             res.status(200).json(results);
         })
     } catch(err) {
-        // console.log(err);
+        console.log(err);
         return res.status(500).send();
     }
 });
@@ -90,7 +90,7 @@ app.get("/workload", async (req, res) =>{
     query +=  " ) AS TEST "
     if (time == 7) query += " GROUP BY WK ORDER BY WK DESC";
     else query += " GROUP BY MO ORDER BY MO DESC"  ;
-    + " LIMIT 8";
+    query += " LIMIT 8";
 
     try {
         connection.query(query, (err,results, fields)=>{
@@ -134,18 +134,18 @@ app.get("/callin", async (req, res) =>{
         query +=  " ) AS TEST "
         if (time == 7) query += " GROUP BY WK ORDER BY WK DESC";
         else query += " GROUP BY MO ORDER BY MO DESC"  ;
-        + " LIMIT 8";
+        query += " LIMIT 8";
         
         connection.query(query, (err,results, fields)=>{
             if(err){
                 console.log(err);
                 return res.status(400).send();
             }
-            console.log(query);
+            // console.log(query);
             res.status(200).json(results);
         })
     } catch(err) {
-        // console.log(err);
+        console.log(err);
         return res.status(500).send();
     }
 });
